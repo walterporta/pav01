@@ -47,7 +47,6 @@ public boolean guardarEnArchivo() {
         pw.println("--- Nueva entrada ---");
         pw.println("Sistema Operativo: " + sistemaOperativo);
 
-        // Une la lista de especialidades con comas, o pone "Ninguna" si está vacía.
         String especialidadesTexto = this.especialidades.isEmpty() 
             ? "Ninguna" 
             : String.join(", ", this.especialidades);

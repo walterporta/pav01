@@ -2,7 +2,7 @@ package miniencuesta;
 
 /**
  *
- * @author gustavo
+ * @author grupo31
  */
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -21,7 +21,7 @@ public class VistaEncuesta extends javax.swing.JFrame {
     initComponents();
     agruparRadioButtons();
     
-    //texto inicial de la etiqueta
+   
     lblValorSlider.setText(String.valueOf(sliderHoras.getValue()));
     
     //se activa cada vez que el slider cambia

@@ -2,16 +2,13 @@ package miniencuesta;
 
 /**
  *
- * @author gustavo
+ * @author grupo31
  */
 public class VistaEstadisticas extends javax.swing.JFrame {
 
     private ModeloEstadisticas modelo;
 
-    /**
-     * Constructor de la ventana de estadísticas.
-     * @param modelo El objeto que contiene todos los contadores y cálculos.
-     */
+   
     public VistaEstadisticas(ModeloEstadisticas modelo) {
         initComponents();
         this.modelo = modelo; 
@@ -19,12 +16,8 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
-    /**
-     * Este método lee los datos del modelo y actualiza el texto de cada una
-     * de las etiquetas (JLabel) en la ventana
-     */
+  
     public void actualizarDatos() {
-        // --- Sistema Operativo ---
         lblWindowsTotal.setText(String.valueOf(modelo.getContadorWindows()));
         lblLinuxTotal.setText(String.valueOf(modelo.getContadorLinux()));
         lblMacTotal.setText(String.valueOf(modelo.getContadorMac()));
@@ -33,7 +26,6 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         lblLinuxPorcentaje.setText(String.format("%.1f%%", modelo.getPorcentajeLinux()));
         lblMacPorcentaje.setText(String.format("%.1f%%", modelo.getPorcentajeMac()));
 
-        // --- Especialidad ---
         lblProgramacionTotal.setText(String.valueOf(modelo.getContadorProgramacion()));
         lblDisenoTotal.setText(String.valueOf(modelo.getContadorDiseno()));
         lblAdminTotal.setText(String.valueOf(modelo.getContadorAdmin()));
@@ -42,7 +34,7 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         lblDisenoPorcentaje.setText(String.format("%.1f%%", modelo.getPorcentajeDiseno()));
         lblAdminPorcentaje.setText(String.format("%.1f%%", modelo.getPorcentajeAdmin()));
 
-        // --- Promedio de Horas ---
+
         lblPromedioHoras.setText(String.format("%.2f horas", modelo.getPromedioHoras()));
     }
     @SuppressWarnings("unchecked")

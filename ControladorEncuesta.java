@@ -2,7 +2,7 @@ package miniencuesta;
 
 /**
  *
- * @author gustavo
+ * @author grupo31
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,40 +20,32 @@ public class ControladorEncuesta implements ActionListener {
         this.modelo = modelo;
         this.vista = vista;
         this.estadisticas = estadisticas;
-       // this.vistaStats = vistaStats;
 
-        //para que escuche los eventos del boton generar
         this.vista.addGenerarListener(this);
-        // para que escuche los eventos de Estadísticas
+
         this.vista.addVerEstadisticasListener(this);
     }
 
-    //metodo que se ejecuta al pulsar Generar
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // ===== ACCIÓN SI SE PRESIONA EL BOTÓN "GENERAR" =====
         if (e.getSource() == vista.getBtnGenerar()) {
 
-            // 1. Obtengo los datos de la vista
             String os = vista.getSistemaOperativoSeleccionado();
             List<String> especialidades = vista.getEspecialidadesSeleccionadas();
             int horas = vista.getHorasSeleccionadas();
 
-            // 2. Verifico que se haya seleccionado una opción en cada grupo
             if (os == null) {
                 JOptionPane.showMessageDialog(vista, "Por favor, seleccione una opción de Sistema Operativo.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
-                return; // Detiene la ejecución si faltan datos
+                return;
             }
 
-            // 3. Actualizo el modelo con los datos de la vista
             modelo.setSistemaOperativo(os);
             modelo.setEspecialidades(especialidades);
             modelo.setHoras(horas);
 
-            // 4. Guardo los datos y actualizo las estadísticas si todo va bien
             if (modelo.guardarEnArchivo()) {
-              //  JOptionPane.showMessageDialog(vista, "Datos guardados correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
                 this.estadisticas.registrarEncuesta(this.modelo);
                 vista.limpiarCampos();
             } else {
@@ -61,19 +53,15 @@ public class ControladorEncuesta implements ActionListener {
             }
         }
 
-        // ===== ACCIÓN SI SE PRESIONA EL BOTÓN "VER ESTADÍSTICAS" =====
         if (e.getSource() == vista.getBtnVerEstadisticas()) {
-    // 1. Comprueba si la ventana NO ha sido creada (si la variable es null)
-    if (this.vistaStats == null) {
-        // Si no existe, la crea AHORA y la guarda en la variable
-        this.vistaStats = new VistaEstadisticas(this.estadisticas);
-    }
-    
-    // 2. Antes de mostrarla, se asegura de que los datos estén actualizados
-    this.vistaStats.actualizarDatos();
-    
-    // 3. La hace visible (ya sea la recién creada o la que ya existía)
-    this.vistaStats.setVisible(true);
-}
+
+            if (this.vistaStats == null) {
+                this.vistaStats = new VistaEstadisticas(this.estadisticas);
+            }
+
+            this.vistaStats.actualizarDatos();
+
+            this.vistaStats.setVisible(true);
+        }
     }
 }
