@@ -10,12 +10,12 @@ import javax.swing.JTextField;
 
 public class ImitadorVistaN extends javax.swing.JFrame {
 
-    /** Creates new form ImitadorVistaN */
     public ImitadorVistaN() {
         initComponents();
         setTitle("Imitador");
         setLocationRelativeTo(null);
-        // Deshabilitar lado Espejo
+        setPreferredSize(new java.awt.Dimension(500, 300));
+        setSize(350, 500);
         txtEspejo.setEnabled(false);
         rb1Espejo.setEnabled(false);
         rb2Espejo.setEnabled(false);
@@ -34,7 +34,6 @@ public class ImitadorVistaN extends javax.swing.JFrame {
 
         jPanelContainer = new javax.swing.JPanel();
         panelOriginal = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtOriginal = new javax.swing.JTextField();
         rb1Original = new javax.swing.JRadioButton();
         rb2Original = new javax.swing.JRadioButton();
@@ -45,7 +44,6 @@ public class ImitadorVistaN extends javax.swing.JFrame {
         comboOriginal = new javax.swing.JComboBox<>();
         spinnerOriginal = new javax.swing.JSpinner();
         panelEspejo = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         txtEspejo = new javax.swing.JTextField();
         rb1Espejo = new javax.swing.JRadioButton();
         rb2Espejo = new javax.swing.JRadioButton();
@@ -55,10 +53,11 @@ public class ImitadorVistaN extends javax.swing.JFrame {
         chk3Espejo = new javax.swing.JCheckBox();
         comboEspejo = new javax.swing.JComboBox<>();
         spinnerEspejo = new javax.swing.JSpinner();
+        separator = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Original");
+        panelOriginal.setBorder(javax.swing.BorderFactory.createTitledBorder("Original"));
 
         rb1Original.setText("Opción 1");
         rb2Original.setText("Opción 2");
@@ -69,8 +68,7 @@ public class ImitadorVistaN extends javax.swing.JFrame {
         chk3Original.setText("Opción 6");
 
         comboOriginal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3" }));
-        // Panel ORIGINAL
-        panelOriginal.setBorder(javax.swing.BorderFactory.createTitledBorder("Original"));
+
         javax.swing.GroupLayout panelOriginalLayout = new javax.swing.GroupLayout(panelOriginal);
         panelOriginal.setLayout(panelOriginalLayout);
         panelOriginalLayout.setHorizontalGroup(
@@ -78,7 +76,7 @@ public class ImitadorVistaN extends javax.swing.JFrame {
             .addGroup(panelOriginalLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(panelOriginalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOriginal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelOriginalLayout.createSequentialGroup()
                         .addGroup(panelOriginalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rb1Original)
@@ -119,8 +117,8 @@ public class ImitadorVistaN extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        // Panel ESPEJO
-        jLabel2.setText("Espejo");
+        panelEspejo.setBorder(javax.swing.BorderFactory.createTitledBorder("Espejo"));
+
         rb1Espejo.setText("Opción 1");
         rb2Espejo.setText("Opción 2");
         rb3Espejo.setText("Opción 3");
@@ -129,7 +127,6 @@ public class ImitadorVistaN extends javax.swing.JFrame {
         chk3Espejo.setText("Opción 6");
         comboEspejo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3" }));
 
-        panelEspejo.setBorder(javax.swing.BorderFactory.createTitledBorder("Espejo"));
         javax.swing.GroupLayout panelEspejoLayout = new javax.swing.GroupLayout(panelEspejo);
         panelEspejo.setLayout(panelEspejoLayout);
         panelEspejoLayout.setHorizontalGroup(
@@ -137,7 +134,7 @@ public class ImitadorVistaN extends javax.swing.JFrame {
             .addGroup(panelEspejoLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(panelEspejoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEspejo, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEspejo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelEspejoLayout.createSequentialGroup()
                         .addGroup(panelEspejoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rb1Espejo)
@@ -178,7 +175,8 @@ public class ImitadorVistaN extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        // Contenedor principal: apila Original arriba y Espejo abajo
+        separator.setOrientation(javax.swing.SwingConstants.HORIZONTAL);
+
         javax.swing.GroupLayout jPanelContainerLayout = new javax.swing.GroupLayout(jPanelContainer);
         jPanelContainer.setLayout(jPanelContainerLayout);
         jPanelContainerLayout.setHorizontalGroup(
@@ -187,6 +185,7 @@ public class ImitadorVistaN extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelOriginal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(separator)
                     .addComponent(panelEspejo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -194,10 +193,12 @@ public class ImitadorVistaN extends javax.swing.JFrame {
             jPanelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelOriginal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelEspejo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelEspejo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -220,7 +221,6 @@ public class ImitadorVistaN extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Getters públicos (compatibles con el controlador existente)
     public JTextField getTxtOriginal() { return txtOriginal; }
     public JTextField getTxtEspejo() { return txtEspejo; }
     public JRadioButton getRb1Original() { return rb1Original; }
@@ -249,8 +249,6 @@ public class ImitadorVistaN extends javax.swing.JFrame {
     private javax.swing.JCheckBox chk3Original;
     private javax.swing.JComboBox<String> comboEspejo;
     private javax.swing.JComboBox<String> comboOriginal;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelContainer;
     private javax.swing.JPanel panelEspejo;
     private javax.swing.JPanel panelOriginal;
@@ -260,6 +258,7 @@ public class ImitadorVistaN extends javax.swing.JFrame {
     private javax.swing.JRadioButton rb2Original;
     private javax.swing.JRadioButton rb3Espejo;
     private javax.swing.JRadioButton rb3Original;
+    private javax.swing.JSeparator separator;
     private javax.swing.JSpinner spinnerEspejo;
     private javax.swing.JSpinner spinnerOriginal;
     private javax.swing.JTextField txtEspejo;
