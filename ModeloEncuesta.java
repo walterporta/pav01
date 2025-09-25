@@ -7,11 +7,12 @@ package miniencuesta;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class ModeloEncuesta {
 
     private String sistemaOperativo;
-    private String especialidad;
+    private List<String> especialidades;
     private int horas;
 
 // Setters
@@ -19,8 +20,8 @@ public class ModeloEncuesta {
         this.sistemaOperativo = sistemaOperativo;
     }
 
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
+    public void setEspecialidades(List<String> especialidades) {
+        this.especialidades = especialidades;
     }
 
     public void setHoras(int horas) {
@@ -31,27 +32,34 @@ public class ModeloEncuesta {
         return sistemaOperativo;
     }
 
-    public String getEspecialidad() {
-        return especialidad;
+    public List<String> getEspecialidades() {
+        return especialidades;
     }
 
     public int getHoras() {
         return horas;
     }
 
-    public boolean guardarEnArchivo() {
-        try (FileWriter fw = new FileWriter("encuesta_resultados.txt", true); PrintWriter pw = new PrintWriter(fw)) {
-            pw.println("--- Nueva entrada ---");
-            pw.println("Sistema Operativo: " + sistemaOperativo);
-            pw.println("Especialidad: " + especialidad);
-            pw.println("Horas en el ordenador: " + horas);
-            pw.println(); // salto de linea
-            return true;
-        } catch (IOException e) {
-            System.err.println("Error al guardar el archivo: " + e.getMessage());
-            return false;
+public boolean guardarEnArchivo() {
+    try (FileWriter fw = new FileWriter("encuesta_resultados.txt", true); 
+         PrintWriter pw = new PrintWriter(fw)) {
 
-        }
+        pw.println("--- Nueva entrada ---");
+        pw.println("Sistema Operativo: " + sistemaOperativo);
+
+        // Une la lista de especialidades con comas, o pone "Ninguna" si está vacía.
+        String especialidadesTexto = this.especialidades.isEmpty() 
+            ? "Ninguna" 
+            : String.join(", ", this.especialidades);
+        pw.println("Especialidad(es): " + especialidadesTexto);
+
+        pw.println("Horas en el ordenador: " + horas);
+        pw.println();
+        return true;
+    } catch (IOException e) {
+        System.err.println("Error al guardar el archivo: " + e.getMessage());
+        return false;
     }
+}
 
 }

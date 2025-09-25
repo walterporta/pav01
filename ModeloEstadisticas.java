@@ -1,5 +1,8 @@
 package miniencuesta;
 
+import java.util.List;
+
+
 public class ModeloEstadisticas {
 
     private int contadorWindows = 0;
@@ -34,7 +37,9 @@ public class ModeloEstadisticas {
                 break;
         }
 
-        switch (encuesta.getEspecialidad()) { // Y un getter para la especialidad
+    List<String> especialidades = encuesta.getEspecialidades();
+    for (String esp : especialidades) {
+        switch (esp) {
             case "Programacion":
                 contadorProgramacion++;
                 break;
@@ -45,6 +50,7 @@ public class ModeloEstadisticas {
                 contadorAdmin++;
                 break;
         }
+    }
     }
 
     // --- Métodos "Getter" para que el nuevo formulario pueda leer los datos ---

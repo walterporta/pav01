@@ -7,6 +7,7 @@ package miniencuesta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import java.util.List;
 
 public class ControladorEncuesta implements ActionListener {
 
@@ -36,18 +37,18 @@ public class ControladorEncuesta implements ActionListener {
 
             // 1. Obtengo los datos de la vista
             String os = vista.getSistemaOperativoSeleccionado();
-            String especialidad = vista.getEspecialidadSeleccionada();
+            List<String> especialidades = vista.getEspecialidadesSeleccionadas();
             int horas = vista.getHorasSeleccionadas();
 
             // 2. Verifico que se haya seleccionado una opción en cada grupo
-            if (os == null || especialidad == null) {
-                JOptionPane.showMessageDialog(vista, "Por favor, seleccione una opción para cada campo.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
+            if (os == null) {
+                JOptionPane.showMessageDialog(vista, "Por favor, seleccione una opción de Sistema Operativo.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
                 return; // Detiene la ejecución si faltan datos
             }
 
             // 3. Actualizo el modelo con los datos de la vista
             modelo.setSistemaOperativo(os);
-            modelo.setEspecialidad(especialidad);
+            modelo.setEspecialidades(especialidades);
             modelo.setHoras(horas);
 
             // 4. Guardo los datos y actualizo las estadísticas si todo va bien

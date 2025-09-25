@@ -75,6 +75,7 @@ public class VistaEstadisticas extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Estadstica de los resultados obtenidos");
         setLocation(new java.awt.Point(0, 0));
         setPreferredSize(new java.awt.Dimension(400, 600));
         setResizable(false);

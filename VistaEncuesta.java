@@ -9,12 +9,13 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.ArrayList;
 
 public class VistaEncuesta extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VistaEncuesta.class.getName());
     private ButtonGroup bgSistemaOperativo;
-    private ButtonGroup bgEspecialidad;
     
     public VistaEncuesta() {
     initComponents();
@@ -40,11 +41,6 @@ public class VistaEncuesta extends javax.swing.JFrame {
         bgSistemaOperativo.add(rbWindows);
         bgSistemaOperativo.add(rbLinux);
         bgSistemaOperativo.add(rbMac);
-        
-        bgEspecialidad = new ButtonGroup();
-        bgEspecialidad.add (rbProgramacion);
-        bgEspecialidad.add (rbDiseno);
-        bgEspecialidad.add (rbAdministracion);
     }
     
     public String getSistemaOperativoSeleccionado(){
@@ -53,11 +49,19 @@ public class VistaEncuesta extends javax.swing.JFrame {
         if (rbMac.isSelected())return "Mac";
         return null; //si no ha seleccionado nada
     }
-    public String getEspecialidadSeleccionada(){
-        if(rbProgramacion.isSelected())return "Programacion";
-        if(rbDiseno.isSelected())return "Diseno Grafico";
-        if(rbAdministracion.isSelected())return "Administracion";
-        return null; // si no ha selecionado nada
+    
+    public List<String> getEspecialidadesSeleccionadas(){
+    List<String> seleccionadas = new ArrayList<>();
+    if (chkProgramacion.isSelected()) {
+        seleccionadas.add("Programacion");
+    }
+    if (chkDiseno.isSelected()) {
+        seleccionadas.add("Diseno Grafico");
+    }
+    if (chkAdministracion.isSelected()) {
+        seleccionadas.add("Administracion");
+    }
+    return seleccionadas;
     }
     
     public int getHorasSeleccionadas(){
@@ -68,9 +72,13 @@ public class VistaEncuesta extends javax.swing.JFrame {
         btnGenerar.addActionListener(listener);
     }
     public void limpiarCampos(){
-        bgSistemaOperativo.clearSelection();
-        bgEspecialidad.clearSelection();
-        sliderHoras.setValue(0);
+    bgSistemaOperativo.clearSelection();
+    sliderHoras.setValue(0);
+
+    // Desmarca cada checkbox
+    chkProgramacion.setSelected(false);
+    chkDiseno.setSelected(false);
+    chkAdministracion.setSelected(false);
     }
 
     public JButton getBtnGenerar() {
@@ -93,9 +101,6 @@ public class VistaEncuesta extends javax.swing.JFrame {
         rbWindows = new javax.swing.JRadioButton();
         rbLinux = new javax.swing.JRadioButton();
         rbMac = new javax.swing.JRadioButton();
-        rbProgramacion = new javax.swing.JRadioButton();
-        rbDiseno = new javax.swing.JRadioButton();
-        rbAdministracion = new javax.swing.JRadioButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -106,8 +111,12 @@ public class VistaEncuesta extends javax.swing.JFrame {
         btnGenerar = new javax.swing.JButton();
         lblValorSlider = new javax.swing.JLabel();
         btnVerEstadisticas = new javax.swing.JButton();
+        chkProgramacion = new javax.swing.JCheckBox();
+        chkDiseno = new javax.swing.JCheckBox();
+        chkAdministracion = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Mini Encuesta");
         setPreferredSize(new java.awt.Dimension(400, 600));
         setResizable(false);
 
@@ -121,17 +130,6 @@ public class VistaEncuesta extends javax.swing.JFrame {
         rbLinux.setText("Linux");
 
         rbMac.setText("Mac");
-
-        rbProgramacion.setText("Programación");
-        rbProgramacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbProgramacionActionPerformed(evt);
-            }
-        });
-
-        rbDiseno.setText("Diseño Grafico");
-
-        rbAdministracion.setText("Administracion");
 
         sliderHoras.setMaximum(10);
         sliderHoras.setMinorTickSpacing(1);
@@ -155,40 +153,54 @@ public class VistaEncuesta extends javax.swing.JFrame {
             }
         });
 
+        chkProgramacion.setText("Programación");
+        chkProgramacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkProgramacionActionPerformed(evt);
+            }
+        });
+
+        chkDiseno.setText("Diseño Gráfico");
+
+        chkAdministracion.setText("Administración");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(95, 95, 95))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblValorSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(182, 182, 182))))
             .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbAdministracion)
-                                    .addComponent(rbDiseno)
-                                    .addComponent(rbProgramacion))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(rbMac)
-                            .addComponent(rbLinux)
-                            .addComponent(rbWindows)
-                            .addComponent(jLabel1)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
+                        .addGap(141, 141, 141)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(rbMac)
+                    .addComponent(rbLinux)
+                    .addComponent(rbWindows)
+                    .addComponent(jLabel1)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkProgramacion)
+                    .addComponent(chkDiseno)
+                    .addComponent(chkAdministracion)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(lblValorSlider)
-                        .addGap(18, 18, 18)
-                        .addComponent(sliderHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(btnGenerar)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnVerEstadisticas)))
+                        .addGap(86, 86, 86)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnGenerar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVerEstadisticas))
+                        .addComponent(sliderHoras, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -204,29 +216,29 @@ public class VistaEncuesta extends javax.swing.JFrame {
                 .addComponent(rbMac)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
+                .addGap(24, 24, 24)
+                .addComponent(chkProgramacion)
+                .addGap(18, 18, 18)
+                .addComponent(chkDiseno)
+                .addGap(18, 18, 18)
+                .addComponent(chkAdministracion)
                 .addGap(22, 22, 22)
-                .addComponent(rbProgramacion)
-                .addGap(18, 18, 18)
-                .addComponent(rbDiseno)
-                .addGap(18, 18, 18)
-                .addComponent(rbAdministracion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(27, 27, 27)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(sliderHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblValorSlider))
-                .addGap(30, 30, 30)
+                .addComponent(lblValorSlider)
+                .addGap(18, 18, 18)
+                .addComponent(sliderHoras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGenerar)
                     .addComponent(btnVerEstadisticas))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(143, 143, 143))
         );
 
         pack();
@@ -236,13 +248,13 @@ public class VistaEncuesta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbWindowsActionPerformed
 
-    private void rbProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbProgramacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbProgramacionActionPerformed
-
     private void btnVerEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEstadisticasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerEstadisticasActionPerformed
+
+    private void chkProgramacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkProgramacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkProgramacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,6 +287,9 @@ public class VistaEncuesta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnVerEstadisticas;
+    private javax.swing.JCheckBox chkAdministracion;
+    private javax.swing.JCheckBox chkDiseno;
+    private javax.swing.JCheckBox chkProgramacion;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -282,11 +297,8 @@ public class VistaEncuesta extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblValorSlider;
-    private javax.swing.JRadioButton rbAdministracion;
-    private javax.swing.JRadioButton rbDiseno;
     private javax.swing.JRadioButton rbLinux;
     private javax.swing.JRadioButton rbMac;
-    private javax.swing.JRadioButton rbProgramacion;
     private javax.swing.JRadioButton rbWindows;
     private javax.swing.JSlider sliderHoras;
     // End of variables declaration//GEN-END:variables
