@@ -1,5 +1,5 @@
 
-package imitador.vista;
+package tp01.vista;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;

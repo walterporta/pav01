@@ -1,4 +1,4 @@
-package imitador.modelo;
+package tp01.modelo;
 
 public class ImitadorModelo {
     private String texto;

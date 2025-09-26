@@ -1,8 +1,9 @@
 
-package imitador.controlador;
+package tp01.controlador;
 
-import imitador.modelo.ImitadorModelo;
-import imitador.vista.ImitadorVistaN;
+
+import tp01.modelo.ImitadorModelo;
+import tp01.vista.ImitadorVistaN;
 
 public class ImitadorControlador {
     private ImitadorModelo modelo;

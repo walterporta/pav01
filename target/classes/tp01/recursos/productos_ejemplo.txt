@@ -1,0 +1,5 @@
+Kingston A2000|Disco sólido M.2 NVMe de alta veloci9dad|18129.9
+WD Blue SN550|Disco sólido M.2 NVMe de alta capacidad|499.0
+SanDisk Extreme Pro|Disco sólido USB 3.2 Gen 2 externo|4309.9
+Samsung 970 EVO Plus|SSD M.2 NVMe de alto rendimiento|199.99
+Crucial MX500|Disco sólido SATA 3 de 1TB|149.99

@@ -1,10 +1,10 @@
-package imitador;
+package tp01;
 
-import imitador.controlador.ImitadorControlador;
-import imitador.modelo.ImitadorModelo;
-import imitador.vista.ImitadorVistaN;
+import tp01.controlador.ImitadorControlador;
+import tp01.modelo.ImitadorModelo;
+import tp01.vista.ImitadorVistaN;
 
-public class Main {
+public class MainImitador {
     public static void main(String[] args) {
         ImitadorModelo modelo = new ImitadorModelo();
         ImitadorVistaN vista = new ImitadorVistaN();
